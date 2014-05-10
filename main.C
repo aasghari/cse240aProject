@@ -221,13 +221,21 @@ int main(int argc, char* argv[]) {
 
 	free(outfile);
 
-	fprintf(fp,"%u\n",curr_cycle);
-	fprintf(fp,"%.4f\n",cpu.getHitRateL1());
-	fprintf(fp,"%.4f\n",cpu.getHitRateL2());
-	fprintf(fp,"%.4f\n",cpu.getAMAT());
-	fprintf(fp,"%.4f\n",avgMemQ);
-	fprintf(fp,"%.4f\n",L2BW);
-	fprintf(fp,"%.4f\n",memBW);
+//	fprintf(fp,"%u\n",curr_cycle);
+//	fprintf(fp,"%.4f\n",cpu.getHitRateL1());
+//	fprintf(fp,"%.4f\n",cpu.getHitRateL2());
+//	fprintf(fp,"%.4f\n",cpu.getAMAT());
+//	fprintf(fp,"%.4f\n",avgMemQ);
+//	fprintf(fp,"%.4f\n",L2BW);
+//	fprintf(fp,"%.4f\n",memBW);
+
+	printf("curr_cycle \t\t %u\n",curr_cycle);
+	printf("cpu.getHitRateL1() \t %.4f\n",cpu.getHitRateL1());
+	printf("cpu.getHitRateL2() \t %.4f\n",cpu.getHitRateL2());
+	printf("cpu.getAMAT() \t\t %.4f\n",cpu.getAMAT());
+	printf("avgMemQ \t\t %.4f\n",avgMemQ);
+	printf("L2BW \t\t\t %.4f\n",L2BW);
+	printf("memBW \t\t\t %.4f\n",memBW);
 
 	fclose(fp);
 

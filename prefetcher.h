@@ -16,7 +16,10 @@ class Prefetcher {
   private:
 	bool _ready;
 	Request _nextReq;
+	Request lastReq;
+	int lastHit; //was the last request a hit?
 
+	u_int32_t blockStartAddr(u_int32_t addr);
   public:
 	Prefetcher();
 
