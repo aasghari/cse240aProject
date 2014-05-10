@@ -24,3 +24,4 @@
 .project
 .cproject
 temp.out
+*.tar.gz
