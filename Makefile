@@ -21,5 +21,8 @@ memQueue.o: memQueue.C memQueue.h mem-sim.h cache.h
 prefetcher.o: prefetcher.C prefetcher.h mem-sim.h
 	${CC} ${CCFLAGS} -c prefetcher.C
 
+bundle:
+	 tar -cvzf aasghari_prefetcher.tar.gz MEMBERS prefetcher.C prefetcher.h
+
 clean:
 	rm -f *.o cacheSim
