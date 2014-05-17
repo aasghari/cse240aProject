@@ -11,15 +11,15 @@
 
 #include <sys/types.h>
 #include "mem-sim.h"
-
+#include <set>
 class Prefetcher {
   private:
 	bool _ready;
-	Request _nextReq;
-	Request lastReq;
-	int lastHit; //was the last request a hit?
+	u_int32_t nextReqAddr;
+	u_int32_t lastReqAddr;
+	int lastHit;
 
-	u_int32_t blockStartAddr(u_int32_t addr);
+	u_int32_t blockStartAddr(u_int32_t addr, int size);
   public:
 	Prefetcher();
 
