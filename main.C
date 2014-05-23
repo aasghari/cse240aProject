@@ -217,9 +217,9 @@ int main(int argc, char* argv[]) {
 	strcpy(outfile,argv[1]);
 	strcat(outfile,".out");
 
-	fp = fopen(outfile,"w"); // open outfile for writing
-
-	free(outfile);
+//	fp = fopen(outfile,"w"); // open outfile for writing
+//
+//	free(outfile);
 
 //	fprintf(fp,"%u\n",curr_cycle);
 //	fprintf(fp,"%.4f\n",cpu.getHitRateL1());
@@ -229,15 +229,16 @@ int main(int argc, char* argv[]) {
 //	fprintf(fp,"%.4f\n",L2BW);
 //	fprintf(fp,"%.4f\n",memBW);
 
-	printf("curr_cycle \t\t %u\n",curr_cycle);
-	printf("cpu.getHitRateL1() \t %.4f\n",cpu.getHitRateL1());
-	printf("cpu.getHitRateL2() \t %.4f\n",cpu.getHitRateL2());
-	printf("cpu.getAMAT() \t\t %.4f\n",cpu.getAMAT());
-	printf("avgMemQ \t\t %.4f\n",avgMemQ);
-	printf("L2BW \t\t\t %.4f\n",L2BW);
-	printf("memBW \t\t\t %.4f\n",memBW);
+//	printf("curr_cycle \t\t %u\n",curr_cycle);
+//	printf("cpu.getHitRateL1() \t %.4f\n",cpu.getHitRateL1());
+//	printf("cpu.getHitRateL2() \t %.4f\n",cpu.getHitRateL2());
+//	printf("cpu.getAMAT() \t\t %.4f\n",cpu.getAMAT());
+//	printf("avgMemQ \t\t %.4f\n",avgMemQ);
+//	printf("L2BW \t\t\t %.4f\n",L2BW);
+//	printf("memBW \t\t\t %.4f\n",memBW);
 
-	fclose(fp);
+	printf("%s \t\t %.4f\n",argv[1],cpu.getAMAT());
+//	fclose(fp);
 
 	return 0;
 }

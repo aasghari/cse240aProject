@@ -14,7 +14,7 @@
 #include <climits>
 
 Prefetcher::Prefetcher():
-    nextReqAddr(),lastReqAddr(),lastHit(),_ready()
+    nextReqAddr(),_ready()
 {
 }
 
@@ -46,8 +46,6 @@ Request Prefetcher::getRequest(u_int32_t cycle)
 void Prefetcher::completeRequest(u_int32_t cycle)
 {
     _ready = false;
-    lastHit++;
-    this->lastReqAddr=this->nextReqAddr;
 }
 
 /*
@@ -56,23 +54,22 @@ void Prefetcher::completeRequest(u_int32_t cycle)
  */
 void Prefetcher::cpuRequest(Request req)
 {
-    const int L1_STEP_VALUE=16;
-    const int L2_STEP_VALUE=32;
+
     if(_ready || !req.fromCPU)
 	return;
 
-
+    u_int32_t reqAddrBlock= blockStartAddr(req.addr,L1_STEP_VALUE);
+    u_int32_t lastReqAddrBlock=blockStartAddr(this->nextReqAddr,L1_STEP_VALUE);
+    int distance=lastReqAddrBlock-reqAddrBlock;
     //If the CPU didn't hit in L1 we have mispredicted
     if(!req.HitL1)
     {
-	u_int32_t reqAddrBlock= blockStartAddr(req.addr,L1_STEP_VALUE);
 	nextReqAddr = reqAddrBlock + L2_STEP_VALUE;
-	lastHit=0;
 	_ready = true;
     }
-    else if(lastHit<10) //all comes down to scaling how far ahead we fetch
+    else if(distance>0 && ((distance/L2_STEP_VALUE)<MAX_L2_BLOCK_DIST)
+	    && (lastReqAddrBlock+L2_STEP_VALUE)<MAX_MEM_ADDR)
     {
-	 u_int32_t lastReqAddrBlock=blockStartAddr(this->lastReqAddr,L1_STEP_VALUE);
 	nextReqAddr=lastReqAddrBlock+L2_STEP_VALUE;
 	_ready = true;
     }

@@ -24,5 +24,12 @@ prefetcher.o: prefetcher.C prefetcher.h mem-sim.h
 bundle:
 	 tar -cvzf aasghari_prefetcher.tar.gz MEMBERS prefetcher.C prefetcher.h
 
+test: all
+	.\\cacheSim.exe .\\traces\\g++.trace
+	.\\cacheSim.exe .\\traces\\grep.trace
+	.\\cacheSim.exe .\\traces\\ls.trace
+	.\\cacheSim.exe .\\traces\\plamap.trace
+	.\\cacheSim.exe .\\traces\\testgen.trace
+
 clean:
 	rm -f *.o cacheSim
