@@ -14,7 +14,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-
+extern int count;
 int main(int argc, char* argv[]) {
 	if(argc != 2) {
 		printf("Usage: %s [trace file]\n",argv[0]);
@@ -237,7 +237,7 @@ int main(int argc, char* argv[]) {
 //	printf("L2BW \t\t\t %.4f\n",L2BW);
 //	printf("memBW \t\t\t %.4f\n",memBW);
 
-	printf("%s \t\t %.4f\n",argv[1],cpu.getAMAT());
+	printf("%s \t\t %.4f\t%d\n",argv[1],cpu.getAMAT(),count);
 //	fclose(fp);
 
 	return 0;

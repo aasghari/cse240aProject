@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <climits>
-
+int count=0;
 Prefetcher::Prefetcher():
     nextReqAddr(),_ready()
 {
@@ -64,12 +64,13 @@ void Prefetcher::cpuRequest(Request req)
     //If the CPU didn't hit in L1 we have mispredicted
     if(!req.HitL1)
     {
+
 	nextReqAddr = reqAddrBlock + L2_STEP_VALUE;
 	_ready = true;
+	++count;
     }
-    else if(distance>0 && ((distance/L2_STEP_VALUE)<MAX_L2_BLOCK_DIST)
-	    && (lastReqAddrBlock+L2_STEP_VALUE)<MAX_MEM_ADDR)
-    {
+    else if(distance>0 && ((distance/L2_STEP_VALUE)<MAX_L2_BLOCK_DIST))
+    { //let the overflow deal with walkign off the end of memory
 	nextReqAddr=lastReqAddrBlock+L2_STEP_VALUE;
 	_ready = true;
     }
