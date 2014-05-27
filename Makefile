@@ -22,7 +22,7 @@ prefetcher.o: prefetcher.C prefetcher.h mem-sim.h
 	${CC} ${CCFLAGS} -c prefetcher.C
 
 bundle:
-	 tar -cvzf aasghari_prefetcher.tar.gz MEMBERS prefetcher.C prefetcher.h
+	 tar -cvzf aasghari_prefetcher.tar.gz MEMBERS prefetcher.C prefetcher.h asghari_ali_cse240a_sp14_project.pdf
 
 test: all
 	.\\cacheSim.exe .\\traces\\g++.trace
