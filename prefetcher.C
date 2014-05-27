@@ -14,7 +14,7 @@
 #include <climits>
 int count=0;
 Prefetcher::Prefetcher():
-    nextReqAddr(),_ready()
+    nextReqAddr(),ready()
 {
 }
 
@@ -26,7 +26,7 @@ u_int32_t Prefetcher::blockStartAddr(u_int32_t addr,int size)
 
 bool Prefetcher::hasRequest(u_int32_t cycle)
 {
-    return _ready;
+    return ready;
 }
 
 // request a desired address be brought in
@@ -45,7 +45,7 @@ Request Prefetcher::getRequest(u_int32_t cycle)
 //only doesn't get sent if the L2 queue is full!
 void Prefetcher::completeRequest(u_int32_t cycle)
 {
-    _ready = false;
+    ready = false;
 }
 
 /*
@@ -55,7 +55,7 @@ void Prefetcher::completeRequest(u_int32_t cycle)
 void Prefetcher::cpuRequest(Request req)
 {
 
-    if(_ready || !req.fromCPU)
+    if(ready || !req.fromCPU)
 	return;
 
     u_int32_t reqAddrBlock= blockStartAddr(req.addr,L1_STEP_VALUE);
@@ -66,13 +66,13 @@ void Prefetcher::cpuRequest(Request req)
     {
 
 	nextReqAddr = reqAddrBlock + L2_STEP_VALUE;
-	_ready = true;
+	ready = true;
 	++count;
     }
     else if(distance>0 && ((distance/L2_STEP_VALUE)<MAX_L2_BLOCK_DIST))
     { //let the overflow deal with walkign off the end of memory
 	nextReqAddr=lastReqAddrBlock+L2_STEP_VALUE;
-	_ready = true;
+	ready = true;
     }
 
 

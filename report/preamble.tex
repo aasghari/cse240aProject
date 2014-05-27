@@ -1,0 +1,49 @@
+
+\usepackage{color}
+\usepackage{Listings}
+
+\theoremstyle{definition}
+\newtheorem{defi}{Definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+%% Defines the \note macro
+
+\ifdraft
+\definecolor{notecolor}{rgb}{0.75,0,0} % A darker red
+\newcommand{\note}[1]{{\textcolor{notecolor}{[\textit{#1}]}}}
+\else
+\newcommand{\note}[1]{}
+\fi
+
+
+%% Danny's Amazing Algorithm Box!!!
+
+\newenvironment{AlgBox}
+{\vspace{0.2 in} \hrule \sffamily 
+\begin{algorithmic}[1]
+}
+{
+\end{algorithmic} 
+\hrule \vspace{0.2 in} }
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=left,
+  numberstyle=\color{gray},
+  numbersep=0pt,
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}

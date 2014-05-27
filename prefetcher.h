@@ -17,7 +17,7 @@ class Prefetcher {
 	static const u_int32_t  L1_STEP_VALUE=16;
 	static const u_int32_t  L2_STEP_VALUE=32;
 	static const int MAX_L2_BLOCK_DIST=23; //number of L2 blocks ahead of current address to fetch
-	bool _ready;
+	bool ready;
 	u_int32_t nextReqAddr;
 
 	u_int32_t blockStartAddr(u_int32_t addr, int size);
